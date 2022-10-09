@@ -1,0 +1,42 @@
+<meta charset="UTF-8">
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+
+<div id="app">
+    <comp></comp>
+</div>
+
+<script type="module">
+    
+
+    const EuAki = { //Componente sem compilação // Podemos usar todas as configurações do createApp
+        template:`
+        <div>Eu aqui</div>
+        `,
+        data() {
+            return {
+                nome: "Davidson",
+                logado:false
+            }
+        },
+        name:'comp2'
+    };
+    import { createApp } from 'vue';
+
+    createApp({
+        data() {
+            return {
+                nome: "Davidson",
+                logado:false
+            }
+        },
+        components: {// define o componente de forma Local, só para essa instancia
+            comp: EuAki
+        },
+    }).mount('#app')
+</script>

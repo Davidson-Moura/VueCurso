@@ -1,0 +1,30 @@
+<meta charset="UTF-8">
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+<div id="app">
+    <p ref="pRef"> {{titulo1}} </p> <!--Esse ref guarda na instancia Vue a referencia pro objeto, assim podendo ir até esta tag pela referencia-->
+</div>
+
+<script type="module"> 
+    import { createApp } from 'vue';
+
+    const vue =createApp({
+        data() {
+            return {
+                titulo1: "vue"
+            }
+        },
+        methods: {
+            consulta(){
+                console.log(this.$ref.pRef.innerText)
+            }
+        },
+    }).mount('#app')
+
+    vue.$refs.pRef.innerText = "teste"; //Valor do <p ref="pRef">
+</script>

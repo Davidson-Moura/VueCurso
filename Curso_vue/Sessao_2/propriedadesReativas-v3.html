@@ -1,0 +1,52 @@
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+
+<div id="app">
+    <button v-on:click="aumentar">Aumentar</button>
+    <button v-on:click="contador2++">Aumentar 2</button>
+    <p>{{contador}}</p>
+    <p>{{contador2}}</p>
+    <p>{{resultado}}</p>
+    <button v-on:click="diminuir">Diminuir</button>
+</div>
+
+<script type="module">
+    import { createApp } from 'vue';
+
+    createApp({
+        data() {
+            return {
+                contador:0,
+                contador2:0
+            }
+        },
+        conputed:{ //Só chama a função se ela causar algum impacto na view, economizando computacionalmente
+            resultado(){
+                return this.contador >=5 ? "maior ou igual que 5":"menor que 5";
+            }
+        },
+        watch:{ //monitoramento de variável
+            contador(novo, antigo){ // monitora o valor da variavel contador
+                console.log(antigo,novo); 
+                setTimeout(()=>{//tem que ser arrow function
+                    this.contador = 0;
+                    //ou
+                    //instanciaVue.contador = 0
+                },2000);
+            }
+        },
+        methods: {
+            aumentar: function(){
+                this.contador ++;
+            },
+            diminuir: function(){
+                this.contador --;
+            }
+        },
+    }).mount('#app')
+</script>

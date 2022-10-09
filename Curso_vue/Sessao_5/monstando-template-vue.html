@@ -1,0 +1,40 @@
+<meta charset="UTF-8">
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+<div id="app">
+    
+</div>
+
+<script type="module"> 
+    import { createApp } from 'vue';
+
+    //não é a melhora forma
+    const vue =createApp({
+        template:`
+        <div>
+            <p ref="pRef"> {{titulo1}} </p>
+        </div>
+        `,
+        data() {
+            return {
+                titulo1: "vue"
+            }
+        },
+        methods: {
+            consulta(){
+                console.log(this.$ref.pRef.innerText)
+            }
+        },
+    })
+    vue.mount();
+
+    document.querySelector('#app').appendChild(vue.$el);
+
+    //parar chamar o .mount() sem o id é preciso passar o template ou um render
+
+</script>

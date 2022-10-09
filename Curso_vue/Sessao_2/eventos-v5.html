@@ -1,0 +1,61 @@
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+
+<div id="app">
+    <p>{{contador}}</p>
+    <button v-on:click="somar(5,$event)">Somar</button><!--$event é reservado para passar o evento-->
+    <p v-on:mousemove="position">
+        Mouse: {{x}} e {{y}}
+        <span v-on:mousemove="parar">Para Aqui</span>
+        <span v-on:mousemove.stop="">Para Aqui com propriedade</span>
+        <span v-on:mousemove.stop.prevent="">Para Aqui com propriedade</span>
+    </p>
+    <a v-on:click.prevent="" href="www.google.com">google</a> <!--v-on:click.prevent previne o evento padrão da Tag-->
+    <hr>
+    <input type="text" v-on:keyup="soltou">
+    <input type="text" v-on:keyup.enter="apertouEnter">
+    <input type="text" v-on:keyup.enter.alt="apertouEnterAlt"> <!--alt+enter-->
+</div>
+
+<script type="module">
+    import { createApp } from 'vue';
+
+    createApp({
+        data() {
+            return {
+                contador: 0,
+                x:0,
+                y:0
+            }
+        },
+        methods: {
+            somar: function(valor, oEvent){
+                this.contador += valor;
+            },
+            position: function(oEvent){
+                this.x = oEvent.clientX;
+                this.y = oEvent.clientY;
+            },
+            parar: function(oEvent){
+                oEvent.stopPropagation();//faz o Evento da Tag html superior não passar para esse elemento
+            },
+            naoNavegar(oEvent){ // é igual a v-on:click.prevent
+                oEvent.preventDefault();
+            },
+            soltou:function(){
+                console.log("soltou");
+            },
+            apertouEnter:function(){
+                alert("apertouEnter");
+            },
+            apertouEnterAlt:function(){
+                alert("apertouEnterAlt");
+            }
+        },
+    }).mount('#app')
+</script>

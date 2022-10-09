@@ -1,0 +1,32 @@
+1- Gerar build de produção
+	-> npm run build
+		-> Cria a pasta dist, que vc deve jogar no servidor
+2- Deploy do front pelo S3 AWS
+	- Criar um bucket com o nome do domínio
+	- Desmarcar tudo na aba public access -> para deixar os arquivos publicos
+	- Abrir o bucket e fazer upload dos arquivos do front da pasta dist
+	- Dar next e colocar a permisão "manager public permissions" para "grant public read acess" -> parar permitir a leitura dos arquivos pelo usuário
+	- Em property, habilitar start website hosting
+	- Colocar o arquivo inicial como index.html e configurar pra retornar para o index as requisições diferentes
+
+3- Criar Certificado SSL
+	- Certificate manager
+	- Request certificate
+	- Nome do dominio do site
+	- Fazer a verificação do dominio
+	- validar
+
+4- Criar distribuição no cloudFront CDN
+	- Criar distribution
+	- WEB
+	- selecionar nome do domínio
+	- redirect http to https
+	- nomes alternativos colocar um dominio
+	- colocar "Custom ssl certificate" que criamos
+	- default root object = index.html
+
+5- O nome do bucket tem que ser igual ao nome do domínio
+
+6- configurar dns - CloudFront
+	- Criar CNAME para o cloundfront.net com o domínio
+	-

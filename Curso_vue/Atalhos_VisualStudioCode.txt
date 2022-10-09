@@ -1,0 +1,5 @@
+div#cont = <div id="cont"></div>
+div.cont = <div class="cont"></div>
+div#nome.cont = <div id="nome" class="cont"></div>
+
+img[davidson] = <img davidson=""/>

@@ -1,0 +1,26 @@
+<meta charset="UTF-8">
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+<div id="app">
+    {{titulo1}}
+</div>
+
+<script type="module"> //Usado poucas vezes, só usado em aplicação que terão aplicações diferentes na msm view
+    import { createApp } from 'vue';
+
+    const vue =createApp({
+        data() {
+            return {
+                titulo1: "vue"
+            }
+        },
+        methods: {
+        },
+    }).mount('#app')
+    vue.novaInfo = "teste"; //Esse valor não é reativo e não é valido
+</script>

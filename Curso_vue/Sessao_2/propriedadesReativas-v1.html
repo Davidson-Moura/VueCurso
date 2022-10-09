@@ -1,0 +1,31 @@
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+
+<div id="app">
+    <p>{{titulo}}</p>
+    <!--Oque é escrito no html é passado para o vue-->
+    <input type="text" v-bind:value="titulo" v-on:input="titulo = $event.target.value">
+    <input type="text" v-model="titulo">
+</div>
+
+<script type="module">
+    import { createApp } from 'vue';
+
+    createApp({
+        data() {
+            return {
+                titulo: "Titulo"
+            }
+        },
+        methods: {
+            somar: function(){
+                this.contador ++;
+            }
+        },
+    }).mount('#app')
+</script>

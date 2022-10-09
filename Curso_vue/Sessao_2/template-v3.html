@@ -1,0 +1,30 @@
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+
+<div id="app">
+    <p>{{titulo}}</p>
+    <p>{{ saudacao()}}</p>
+</div>
+
+<script type="module">
+    import { createApp } from 'vue';
+
+    createApp({
+        data() {
+            return {
+                titulo: 'Usando Vue!'
+            }
+        },
+        methods: {
+            saudacao: function(){
+                console.log(this);
+                return this.titulo + " teste";
+            }
+        },
+    }).mount('#app')
+</script>

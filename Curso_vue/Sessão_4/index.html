@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <script type="importmap">
+        {
+            "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+            }
+        }
+    </script>
+    <title>Matador de monstro</title>
+</head>
+<body>
+    <div id="app">
+        <div class="panel scores">
+            <div class="score">
+                <h1>Jogador</h1>
+                <div class="life-bar">
+                    <div class="life"
+                        :class="{danger: playerLife < 20}"
+                        :style="{width: playerLife + '%'}"></div>
+                </div>
+                <div>{{playerLife}}%</div>
+            </div>
+            <div class="score">
+                <h1>Monstro</h1>
+                <div class="life-bar">
+                    <div class="life"
+                        :class="{danger: monsterLife < 20}"
+                        :style="{width: monsterLife + '%'}"></div>
+                </div>
+                <div>{{monsterLife}}%</div>
+            </div>
+        </div>
+
+        <div class="panel result" v-show="hasResult">
+            <p class="lose" v-show="monsterLife > 0 ">Você Perdeu</p>
+            <p class="win" v-show="playerLife > 0 ">Você Ganhou</p>
+        </div>
+
+        <div class="panel buttons">
+            <div v-show="running">
+                <button @click="attack(false)" class="btn attack">Ataque</button>
+                <button @click="attack(true)" class="btn spcAttack">Ataque especial</button>
+                <button @click="healAndHurt" class="btn heal">Curar</button>
+                <button @click="running = false" class="btn give-up">Desistir</button>
+            </div>
+            <button v-show="!running" @click="StartGame" class="btn new-game">Iniciar Jogo</button>
+        </div>
+        <div v-show="logs.length" class="panel logs">
+            <ul style="list-style: none;">
+                <li v-for="log in logs" class="log" :class="log.cls">{{log.text}}</li>
+            </ul>
+        </div>
+    </div>
+    <script src="app.js" type="module"></script>
+</body>
+</html>

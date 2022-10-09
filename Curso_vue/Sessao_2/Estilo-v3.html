@@ -1,0 +1,65 @@
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+<style>
+    .caixas{
+        display: flex;
+        justify-content: space-between;
+    }
+    .demo{
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+    }
+    .c-1{
+        background-color: red;
+    }
+    .c2{
+        background-color: blue;
+    }
+    .c3{
+        background-color: green;
+    }
+    .girar{
+        transform:  rotate(45deg);
+    }
+</style>
+<!-- bind é : e v-on é @-->
+<div id="app">
+    <div class="caixas">
+        <div class="demo" :class="estilo1" @click="aplicarC1 = !aplicarC1"></div> <!-- :class="{c-1:aplicarC1}" aplica a classe c-1 se aplicarC1 for verdadeiro -->
+        <div class="demo" :class="classeCSS"></div>
+        <div class="demo" :class="[classeCSS,'girar']"></div><!--Array com as classes. As classes entre aspas por ser string e variaveis sem aspas pois serão acessados o valor dentro delas-->
+        <div class="demo" :class="[classeCSS,{girar: aplicaGirar}]"></div> <!--Só aplica o girar se aplicaGirar for verdade-->
+    </div>
+    <br>
+    <input type="text" v-model="classeCSS">
+</div>
+
+<script type="module">
+    import { createApp } from 'vue';
+
+    createApp({
+        data() {
+            return {
+                aplicarC1: false,
+                classeCSS: 'c-1',
+                aplicaGirar:true
+            }
+        },
+        computed:{
+            estilo1(){
+                return {
+                    'c-1': this.aplicarC1,
+                    'c2': !this.aplicarC1,
+                }
+            }
+        },
+        methods: {
+        },
+    }).mount('#app')
+</script>

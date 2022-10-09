@@ -1,0 +1,39 @@
+<meta charset="UTF-8">
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+<div id="app">
+    <comp2>
+        <h1>teste</h1>
+    </comp2>
+
+    <comp>
+
+    </comp>
+</div>
+<script type="module"> 
+    import { createApp } from 'vue';
+    
+    //<!--Não funciona na nova versão-->
+    createApp.component('comp',{
+        template: "<h2>Componente</h2>"
+    });
+
+    //não é a melhora forma
+    const vue = createApp({
+        data() {
+            return {
+            }
+        },
+        methods: {
+        },
+    })
+    vue.mount("comp2"); //<comp2>
+    //vue.mount(".comp"); // podemos usar em classes
+
+
+</script>

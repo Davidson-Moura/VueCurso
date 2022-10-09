@@ -1,0 +1,54 @@
+<meta charset="UTF-8">
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+<div id="app">
+    <h1>{{titulo}}</h1>
+    <button @click="titulo+='#'">add</button>
+    <button @click="$unmount()">destuir</button>
+</div>
+<script type="module"> 
+    import { createApp } from 'vue';
+
+    const vue = createApp({
+        data() {
+            return {
+                titulo:"Ciclo de vida"
+            }
+        },
+        beforeCreate(){
+            console.log("Antes de criar");
+        },
+        created(){
+            console.log("Criado");
+        },
+        beforeMount(){
+            console.log("Antes de montar");
+        },
+        mounted(){
+            console.log("DOM montada");
+        },
+        beforeUpdate(){
+            console.log("Antes de atualizar");
+        },
+        updated(){
+            console.log("Atualizado");
+        },
+        beforeUnmount(){
+            console.log("Antes de destuir");
+        },
+        unmounted(){
+            console.log("Destruida");
+        },
+        methods: {
+        },
+    })
+    vue.mount("#app");
+    //vue.unmount() // destroi a aplicação
+
+
+</script>

@@ -1,0 +1,41 @@
+<meta charset="UTF-8">
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+
+<div id="app">
+    <ul> 
+        <li v-for="(cor, i) in cores" :key="cor">{{cor}} - {{i}}</li><!-- key é uma dica pro vue de qual atributo diferencia os elementos-->
+    </ul>
+    <button @click="cores.push('branca')"> Add </button> <!-- Alteração da lista refletem na view-->
+<!-- Usar o key para informar o valor que o vue deve monitorar, para economizar procesamento -->
+</div>
+
+<script type="module">
+    import { createApp } from 'vue';
+
+    createApp({
+        data() {
+            return {
+                cores: ['vermelho','azul','amarelo','verde'],
+                pessoas: [
+                    {nome: 'Ana', idade:26 , peso:56},
+                    {nome: 'Lucas', idade:30 , peso:90}
+                ]
+            }
+        },
+        methods: {
+
+        },
+    }).mount('#app')
+</script>
+
+<style>
+    ul{
+        list-style: none;
+    }
+</style>

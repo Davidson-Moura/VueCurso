@@ -1,0 +1,31 @@
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+
+<div id="app">
+    <p>{{contador}}</p>
+    <button @click="somar">+ 1</button> <!-- v-on:click="somar" é o msm de @click="somar"-->
+    <hr>
+    <input type="text" :value="contador"> <!-- v-bind:value="contador" é o msm que :value="contador"-->
+</div>
+
+<script type="module">
+    import { createApp } from 'vue';
+
+    createApp({
+        data() {
+            return {
+                contador: 0
+            }
+        },
+        methods: {
+            somar: function(){
+                this.contador ++
+            }
+        },
+    }).mount('#app')
+</script>

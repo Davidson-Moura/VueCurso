@@ -1,0 +1,46 @@
+<meta charset="UTF-8">
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+<div id="app">
+    {{titulo1}}
+    <button @click="alterar">b</button>
+</div>
+<div id="app2">
+    {{titulo2}}
+    <button @click="alterar">c</button>
+</div>
+
+<script type="module"> //Usado poucas vezes, só usado em aplicação que terão aplicações diferentes na msm view
+    import { createApp } from 'vue';
+
+    const vue =createApp({
+        data() {
+            return {
+                titulo1: "vue"
+            }
+        },
+        methods: {
+            alterar(){
+                vue2.titulo2 = "funcionou"
+            }
+        },
+    }).mount('#app')
+
+    const vue2 =createApp({
+        data() {
+            return {
+                titulo2: "vue2"
+            }
+        },
+        methods: {
+            alterar(){
+                vue.titulo1 = "funcionou"
+            }
+        },
+    }).mount('#app2')
+</script>

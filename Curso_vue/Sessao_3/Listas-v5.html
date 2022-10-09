@@ -1,0 +1,67 @@
+<meta charset="UTF-8">
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+
+<div id="app">
+    <ul> <!-- Podemos pegar a variavel cor e usar em outras propriedades :teste="cor"-->
+        <li v-for="(cor, i) in cores" :teste="cor">{{cor}} - {{i}}</li> <!--Usar o v-for no elemento que vai ser repetido-->
+    </ul>
+
+    <hr>
+
+    <template v-for="(cor, i) in cores">
+        <p>{{cor}} - {{i}}</p>
+    </template>
+
+    <hr>
+
+    <template v-for="pessoa in pessoas">
+        <p>{{pessoa.nome}} - {{pessoa.idade}} - {{pessoa.peso}} </p>
+    </template>
+
+    <hr>
+
+    <template v-for="pessoa in pessoas">
+        <div v-for="(valor, chave, index) in pessoa">
+            <p>{{chave}}({{index}}) = {{valor}}</p>
+        </div>
+        <br>
+    </template>
+
+    <hr>
+
+    <template v-for="i in 10">
+        {{i}} -
+    </template>
+
+</div>
+
+<script type="module">
+    import { createApp } from 'vue';
+
+    createApp({
+        data() {
+            return {
+                cores: ['vermelho','azul','amarelo','verde'],
+                pessoas: [
+                    {nome: 'Ana', idade:26 , peso:56},
+                    {nome: 'Lucas', idade:30 , peso:90}
+                ]
+            }
+        },
+        methods: {
+
+        },
+    }).mount('#app')
+</script>
+
+<style>
+    ul{
+        list-style: none;
+    }
+</style>

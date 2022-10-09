@@ -1,0 +1,64 @@
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+<style>
+    .caixas{
+        display: flex;
+        justify-content: space-between;
+    }
+    .demo{
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+    }
+    .c-1{
+        background-color: red;
+    }
+    .c2{
+        background-color: blue;
+    }
+    .c3{
+        background-color: green;
+    }
+    .girar{
+        transform:  rotate(45deg);
+    }
+</style>
+<!-- bind é : | v-on é @-->
+<div id="app">
+    <div class="caixas">
+        <div class="demo" :style="{'background-color': cor}"></div> 
+        <div class="demo" :style="{'backgroundColor': cor}"></div>
+        <div class="demo" :style="meuEstilo"></div>
+        <div class="demo" :style="[meuEstilo, {height: 200} ]"></div>
+    </div>
+    <br>
+    <input type="text" v-model="cor">
+</div>
+
+<script type="module">
+    import { createApp } from 'vue';
+
+    createApp({
+        data() {
+            return {
+                cor:"blue",
+                largura: 1000
+            }
+        },
+        computed:{
+            meuEstilo(){
+                return {
+                    backgroundColor : this.cor,
+                    height: this.largura + "px"
+                }
+            }
+        },
+        methods: {
+        },
+    }).mount('#app')
+</script>

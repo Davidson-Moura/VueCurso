@@ -1,0 +1,39 @@
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+
+<div id="app">
+    <p v-once>{{titulo}}</p>
+    <p>{{ saudacao()}}</p>
+    <a v-bind:href="link">Loja</a><!--Diretivas: Usadas para usar dentro de atributo de uma propriedade-->
+    <!--v-bind é uma propriedade personalizada do vue, podemos criar propriedades para o html-->
+    <!--
+        Podemos usar no java script <p minha-bind="abc">tes</p>
+        document.querySelector('[minha-bind]')
+        document.querySelector('[minha-bind]').getAttribute('minha-bind')
+    -->
+</div>
+
+<script type="module">
+    import { createApp } from 'vue';
+
+    createApp({
+        data() {
+            return {
+                titulo: 'Usando Vue!',
+                link: 'https://ateliedaclaudinha.com/'
+            }
+        },
+        methods: {
+            saudacao: function(){
+                console.log(this);
+                this.titulo="saudação"; //A view do {{titulo}} é atualizada tbm // Usamos o v-once para não atualizar o valor na Tag //Sempre usar o v-once em conteudos que não serão atualizados
+                return this.titulo + " em função";
+            }
+        },
+    }).mount('#app')
+</script>

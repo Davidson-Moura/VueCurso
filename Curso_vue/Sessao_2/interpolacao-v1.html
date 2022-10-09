@@ -1,0 +1,32 @@
+<script type="importmap">
+    {
+        "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+    }
+</script>
+
+<div id="app">
+    <p>{{contador}}</p>
+    <p>{{contador < 5 ? 'menor que 5': 'maior que 5'}}</p>
+    <button v-on:click="somar(5,$event)">Somar</button>
+</div>
+
+<script type="module">
+    import { createApp } from 'vue';
+
+    createApp({
+        data() {
+            return {
+                contador: 0,
+                x:0,
+                y:0
+            }
+        },
+        methods: {
+            somar: function(){
+                this.contador ++;
+            }
+        },
+    }).mount('#app')
+</script>
